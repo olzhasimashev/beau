@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<style type="text/css">
+	body{
+		background-color: #f6f6f6
+	}
+</style>
+<div class="main-wrapper">
+	<div class="navbar">
+		<div class="container">
+			<div class="panel-control-left">
+				<a href="faq.html#" data-activates="slide-out-left" class="sidenav-control-left">
+					<div class="site-title">
+						<h1>Мое расписание</h1>
+					</div>
+				</a>
+			</div>
+			<div class="site-title">
+				
+			</div>
+			<div class="panel-control-right">
+				<a href="faq.html#" data-activates="slide-out-right" class="sidenav-control-right">
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="cart-section section-gap-top-30" style="margin-top: 80px">
+	    <div class="container">
+
+	    	<div class="patient-appointments-col">
+	    		{% for record in records %}
+	    		<div class="patient-widget">
+	    			<div class="patient-top-details">
+	    				<div>
+	    					<span class="invoice-id">Booking Date - {{record.schedule.date}}</span>
+	    				</div>
+	    				<div>
+	    					<span class="date-col"></span>
+	    				</div>
+	    			</div>
+	    			<div class="invoice-widget">
+	    				<div class="pat-info-left">
+	    					<div class="patient-img">
+	    						<a href="#">
+	    							<img src="{{record.schedule.procedure.img.url}}" class="img-fluid" alt="User Image" style="width: 100%; height: 50px">
+	    						</a>
+	    					</div>
+	    					<div class="pat-info-cont">
+	    						<h4 class="pat-name"><a href="#">{{record.schedule.procedure.title}}</a></h4>
+	    						<div class="patient-details-col">
+	    							<span class="">Appt Date {{record.schedule.time}} / {{record.schedule.procedure.duration}} min</span>
+	    						</div>
+	    						<div class="hour-col">
+	    							<div>
+	    								<span class="hours">{{record.schedule.procedure.address}}</span>
+	    							</div>
+	    						</div>
+	    					</div>
+	    				</div>
+	    			</div>
+	    			<div class="status-col">
+	    				{% if record.is_canceled %}							
+	    					<a href="#" class="btn view-eye"><i><img src="assets/img/icon-awesome-eye.svg" alt=""></i>запись отменен</a>
+						{% else %}
+							<form action="{% url 'main:record_cancel' record.id %}" method="post">
+								{% csrf_token %}
+								<input type="submit" value="отменить запись" class="btn success">
+							</form>
+						{% endif %}
+	    			</div>
+	    		</div>
+	    		{% endfor %}
+
+
+	    	</div>
+	    </div>
+	</div>
+
+</div>
+
+
+{% endblock %}

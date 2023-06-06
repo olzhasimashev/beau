@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<style type="text/css">
+	body{
+		background-color: #f6f6f6
+	}
+</style>
+<div class="main-wrapper">
+	<div class="navbar">
+		<div class="container">
+			<div class="panel-control-left">
+				<a href="faq.html#" data-activates="slide-out-left" class="sidenav-control-left">
+					<div class="site-title">
+						<h1>Расписание</h1>
+					</div>
+				</a>
+			</div>
+			<div class="site-title">
+				
+			</div>
+			<div class="panel-control-right">
+				<a href="faq.html#" data-activates="slide-out-right" class="sidenav-control-right">
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="cart-section section-gap-top-30" style="margin-top: 80px">
+	    <div class="container">
+	    	<h4>{% regroup schedules by date as schedule_list %}</h4>
+	    	<div class="patient-appointments-col">
+	    		{% for schedule in schedule_list %}
+	    		<h4 style="margin-bottom: 10px">{{ schedule.grouper }}</h4>
+	    			{% for item in schedule.list %}
+		    		<div class="patient-widget">
+		    			<div class="invoice-widget">
+		    				<div class="pat-info-left">
+		    					<div class="pat-info-cont">
+		    						<h4 class="pat-name"><a href="#">{{ item.procedure.title }}</a></h4>
+		    						<div class="patient-details-col">
+		    							<span class="">Appt Date {{ item.time }}
+			{{ item.procedure.duration }} мин min</span>
+		    						</div>
+		    						<div class="hour-col">
+		    							<div>
+		    								<span class="hours">Осталость {{ item.places_left }} мест</span>
+		    							</div>
+		    						</div>
+		    					</div>
+		    				</div>
+		    			</div>
+		    			<div class="status-col">
+		    				<form action="{% url 'main:record_save' %}" method="POST">
+								{% csrf_token %}
+								<input type="hidden" name="schedule" value="{{ item.id }}">
+								<input type="hidden" name="user" value="{{ request.user.id }}">
+								<input type="hidden" name="procedure" value="{{pk}}">
+								<input type="submit" value="записаться" class="btn success">
+							</form>
+		    			</div>
+		    		</div>
+		    		{% endfor %}
+	    		{% endfor %}
+
+
+	    	</div>
+	    </div>
+	</div>
+
+</div>
+{% endblock %}
+
+
+
+
+

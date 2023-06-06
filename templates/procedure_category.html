@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<!-- navbar -->
+<div class="navbar">
+	<div class="container">
+		<div class="panel-control-left">
+			<a href="faq.html#" data-activates="slide-out-left" class="sidenav-control-left">
+				<div class="site-title">
+					<h1>Процедуры</h1>
+				</div>
+			</a>
+		</div>
+		<div class="site-title">
+			
+		</div>
+		<div class="panel-control-right">
+			<a href="faq.html#" data-activates="slide-out-right" class="sidenav-control-right">
+				<i class="fa fa-sign-out" aria-hidden="true"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="the-slider">
+	<div class="container">
+		<div class="the-slider-entry">
+			<div class="slider-slick">
+				<div class="slider-entry"><img src="{% static 'img/slider1.png' %}" alt="">
+					<div class="overlay"></div>
+					<div class="caption">
+						<div class="container">
+							<h2><a href="index.html">Great Shopping</a></h2>
+							<p>Find your need now and get Discount</p>
+						</div>
+					</div>
+				</div>
+				<div class="slider-entry">
+					<div class="overlay"></div><img src="{% static 'img/slider2.png' %}" alt="">
+					<div class="caption">
+						<div class="container">
+							<h2>Limited Edition</h2>
+							<p>Find your need now and get Discount</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="faq ">
+	<div class="container">
+		<!-- end navbar -->
+		<div class="row">
+			<div class="col-md-12">
+				<select name="category_type" id="category-type-select" data-url="{% url 'main:category_filter' %}">
+					<option value="1">Процедуры</option>
+					<option value="2">Салоны</option>
+				</select>
+			</div>
+		</div>
+		<div style="padding-bottom: 50px;">
+			<di id="procedure_category_list">
+				{% include 'procedure_category_list.html' %}
+			</di>
+		</div>
+	</div>
+</div>	
+
+{% endblock %}

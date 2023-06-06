@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="main-wrapper">
+	<div class="navbar">
+		<div class="container">
+			<div class="panel-control-left">
+				<a href="faq.html#" data-activates="slide-out-left" class="sidenav-control-left">
+					<div class="site-title">
+						<h1>Профиль</h1>
+					</div>
+				</a>
+			</div>
+			<div class="site-title">
+				
+			</div>
+			<div class="panel-control-right">
+				<a href="faq.html#" data-activates="slide-out-right" class="sidenav-control-right">
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="blog-single app-pages app-section">
+		<div class="container">
+			<div class="entry">				<div class="author">
+					<div class="entry">
+						<strong><a href="#">{{request.user.first_name}}  {{request.user.last_name}}</a></strong>
+						<ul>
+							<li><a href="blog-single.html"><i class="fa fa-facebook-square"></i></a></li>
+							<li><a href="blog-single.html"><i class="fa fa-twitter-square"></i></a></li>
+							<li><a href="blog-single.html"><i class="fa fa-google-plus-square"></i></a></li>
+							<li><a href="blog-single.html"><i class="fa fa-instagram"></i></a></li>
+						</ul>
+						<a href="{% url 'main:edit_profile' %}">Edit profile</a>
+					</div>
+				</div>
+				<div class="comment">
+					<h6>Процедуры</h6>
+					{% for procedure in favorite_procedures %}
+					<div class="content">
+						<img src="{{procedure.procedure.img.url}}" alt="">
+						<div class="entry">
+							<strong><a href="{% url 'main:procedure_detail' procedure.procedure.id %}">{{procedure.procedure.title}}</a></strong>
+							<p>{{procedure.procedure.address}}</p>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

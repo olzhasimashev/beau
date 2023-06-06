@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="navbar">
+	<div class="container">
+		<div class="panel-control-left">
+			<a href="faq.html#" data-activates="slide-out-left" class="sidenav-control-left">
+				<div class="site-title">
+					<h1>Процедуры</h1>
+				</div>
+			</a>
+		</div>
+		<div class="site-title">
+			
+		</div>
+		<div class="panel-control-right">
+			<a href="faq.html#" data-activates="slide-out-right" class="sidenav-control-right">
+				<i class="fa fa-sign-out" aria-hidden="true"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="product-details app-pages app-section">
+	<div class="container">
+		<div class="entry">
+			<div class="row">
+				<div class="col s12">
+					<div class="the-slider" style="margin-top: 0">
+						<div class="container">
+							<div class="the-slider-entry">
+							
+								<div class="slider-slick">
+									{% for image in procedure.imageprocedure_set.all %}
+									<div class="slider-entry"><img src="{{image.img.url}}" alt="">
+										<div class="overlay"></div>
+										<div class="caption">
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="details">
+			<h5>Перечень услуг</h5>
+			<ul>
+				{% for service in procedure.serviceprocedure_set.all %}
+				<li>{{service.title}}<li>
+				{% endfor %}
+			</ul>
+			<div class="price" style="margin-bottom: 15px"><h5>Осталось посещений:{{procedure_limit.limit}}</h5></div>
+			<a href="{% url 'main:schedule_list' procedure.id %}" class="button">Расписание</a>
+			<button id="favorite-button" data-url="{% url 'main:favorite' %}" data-procedure="{{ procedure.id }}" {% if is_favorite %}data-action="remove"{% else %}data-action="add"{% endif %}>
+			  {% csrf_token %} {% if is_favorite %}Удалить из Избранного{% else %}Добавить в Избранное{% endif %}
+			</button>
+		</div>
+	</div>
+</div>
+{% endblock %}

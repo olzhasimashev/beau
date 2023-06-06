@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="main-wrapper">
+	<div class="navbar">
+		<div class="container">
+			<div class="panel-control-left">
+				<a href="" data-activates="slide-out-left" class="sidenav-control-left">
+					<div class="site-title">
+						<h1>{{ category.title}}</h1>
+					</div>
+				</a>
+			</div>
+			<div class="site-title">
+				
+			</div>
+			<div class="panel-control-right">
+				<a href="faq.html#" data-activates="slide-out-right" class="sidenav-control-right">
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="cart-section section-gap-top-30" style="margin-top: 80px">
+	    <div class="container">
+			<div class="block">
+				{% for procedure in procedures %}
+				<div class="content">
+					<div class="image">
+						<img src="{{procedure.img.url}}" alt="" style="height: 100px">
+					</div>
+					<div class="text">
+						<a href="{% url 'main:procedure_detail' procedure.id %}"><h4>{{procedure.title}}</h4></a>
+						<p class="location">
+							<i class="icon ion-ios-pin"></i>
+							{{procedure.address}}
+						</p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

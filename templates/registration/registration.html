@@ -1,0 +1,85 @@
+{% load widget_tweaks %}
+{% load static %}
+{% load widget_tweaks %}
+{% load static %}
+<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.transitions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<style type="text/css">
+    select{
+        display: block;
+        color: #000;
+        border: 1px solid #D9D9D9;
+    }
+</style>
+<body style="background-color: #FF8699">
+<div class="login app-pages app-section">
+    <div class="container " style="background-color: #fff; padding: 25px; border-radius: 7px">
+        <div class="pages-title">
+            <h3>Login</h3>
+        </div>
+        <form class="form-horizontal m-t-30" action="{% url 'main:register' %}" method="POST">
+  {% csrf_token %}
+        <div class="form-group">
+            <div class="col-12">
+                    <label> Имя:</label>
+            {{ registration_form.username|add_class:"form-control" }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-12">
+                    <label>Фамилия:</label>
+             {{ registration_form.first_name|add_class:"form-control" }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-12">
+                    <label>Почта:</label>
+             {{ registration_form.email|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12">
+                    <label>Пароль:</label>
+             {{ registration_form.password|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12">
+                    <label>Повторите пароль:</label>
+             {{ registration_form.password2|add_class:"form-control" }}
+            </div>
+        </div>
+
+        <div class="form-group text-center m-t-20">
+            <div class="col-12">
+                <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" type="submit">Registration</button>
+            </div>
+        </div>
+         <div class="create-account">Have an account? <a href="{% url 'login' %}">login</a></div>
+
+    </form>
+    </div>
+</div>
+</body>
+</html>

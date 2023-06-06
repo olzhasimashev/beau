@@ -1,0 +1,66 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load static %}
+<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.transitions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<style type="text/css">
+    select{
+        display: block;
+        color: #000;
+        border: 1px solid #D9D9D9;
+    }
+</style>
+<body style="background-color: #FF8699">
+<div class="login app-pages app-section">
+    <div class="container" style="background-color: #fff; padding: 25px; border-radius: 7px">
+        <div class="pages-title">
+            <h3>Login</h3>
+        </div>
+        <form class="form-horizontal form-material" action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+            <div class="form-group mb-4">
+                <label class="col-md-12 p-0">Enter login</label>
+                <div class="col-sm-12 border-bottom">
+                    {{ form.username|add_class:"form-control" }}
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <label for="example-email" class="col-md-12 p-0">enter password</label>
+                <div class="col-sm-12 border-bottom">
+                    {{ form.password|add_class:"form-control"}}
+                </div>
+            </div>
+            
+            <div class="form-group mb-4">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" type="submit" style="width: 100%">To come in</button>
+                </div>
+            </div>
+            {% if form.errors %}
+              <p style="color:red">wrong login or password</p>
+            {% endif %}
+            <div class="create-account">Not Registered? <a href="{% url 'main:register' %}">Create an account</a></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

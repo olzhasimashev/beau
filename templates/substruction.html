@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="main-wrapper">
+	<div class="navbar">
+		<div class="container">
+			<div class="panel-control-left">
+				<a href="faq.html#" data-activates="slide-out-left" class="sidenav-control-left">
+					<div class="site-title">
+						<h1>Абонемент</h1>
+					</div>
+				</a>
+			</div>
+			<div class="site-title">
+				
+			</div>
+			<div class="panel-control-right">
+				<a href="faq.html#" data-activates="slide-out-right" class="sidenav-control-right">
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="cart-section section-gap-top-30" style="margin-top: 80px">
+		<div class="invoices">
+			<div class="container">
+				<div class="patient-widget">
+					<div class="">
+						<div>
+							{{substruction.subscription.title}}
+							{{substruction.subscription.price}}
+							{% if substruction.start and substruction.end %}
+							    <p>This subscription lasts {{ substruction.end|date:"F j, Y" }} - {{ substruction.start|date:"F j, Y" }} = {{ duration_str }} days.</p>
+							{% else %}
+							    <p>This subscription has not started yet.</p>
+							{% endif %}
+						</div>
+						<div>
+					</div>
+					<div class="invoice-widget">
+						<div class="pat-info-left">
+							<div class="patient-img">
+								<a href="#">
+									<img src="{% static 'img/90.svg' %}" style="width: 100%" class="img-fluid" alt="User Image">
+								</a>
+							</div>
+							<div class="pat-info-cont">
+								<h4 class="pat-name"><a href="#">Subscriptions</a></h4>
+								<div class="patient-details-col">
+									<span>90 days KZT</span>
+								</div>
+							</div>
+						</div>
+						<div class="pat-info-right">
+							<div class="price">7490 KZT * 12 month</div>
+							<div class="view-btn">
+								<a href="https://wa.me/77009555870">Купить сейчас</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

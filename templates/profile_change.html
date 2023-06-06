@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-wrapper">
+	<div class="navbar">
+		<div class="container">
+			<div class="panel-control-left">
+				<a href="faq.html#" data-activates="slide-out-left" class="sidenav-control-left">
+					<div class="site-title">
+						<h1>Профиль</h1>
+					</div>
+				</a>
+			</div>
+			<div class="site-title">
+				
+			</div>
+			<div class="panel-control-right">
+				<a href="http://127.0.0.1:8000/" class="">
+					<i class="fa fa-sign-out" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="blog-single app-pages app-section">
+		<div class="container">
+			<div class="post-comment">
+				 <h2>Edit Profile</h2>
+				<div class="content">
+					<form method="post" style="width: 100%;">
+				    {% csrf_token %}
+				    {{ form.username }}<br>
+				    {{ form.email }}<br>
+				    {{ form.first_name }}<br>
+				    {{ form.last_name }}<br>
+				    <button type="submit" class="button">Save Changes</button>
+				  </form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
